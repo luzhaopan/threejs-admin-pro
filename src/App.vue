@@ -1,28 +1,27 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-</script>
+
 
 <template>
   <div class="main-container">
     <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/three">three</RouterLink>
-        <RouterLink to="/scene1">scene1</RouterLink>
-      </nav>
+      <div class="wrapper">
+        <nav>
+          <RouterLink v-for="item in router" :to="item.path" :key="item.path">
+            {{ item.name }}
+          </RouterLink>
+        </nav>
+      </div>
+    </header>
+    <div style="flex: 1">
+      <RouterView />
     </div>
-  </header>
-  <div style="flex: 1;">
-    <RouterView />
   </div>
-  
-  </div>
-  
 </template>
 
+<script lang="ts" setup>
+import { useRouter, RouterLink, RouterView } from 'vue-router' //1.引入路由
+const router = useRouter().getRoutes() //2.实例化路由
+</script>
 <style scoped>
-
 .main-container {
   display: flex;
 }
@@ -59,7 +58,6 @@ nav a:first-of-type {
 }
 
 @media (min-width: 1024px) {
-
   .logo {
     margin: 0 2rem 0 0;
   }
