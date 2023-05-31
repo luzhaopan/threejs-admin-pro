@@ -1,5 +1,5 @@
 <template>
-  <div class="scene2" id="scene2"></div>
+  <div class="scene3" id="scene3"></div>
 </template>
 
 <script lang="ts" setup>
@@ -96,6 +96,6 @@ const init = () => {
   // document.body.appendChild(renderer.domElement)
 
   // 13、Canvas画布插入到任意HTML元素中
-  document.getElementById('scene2')!.appendChild(renderer.domElement)
+  document.getElementById('scene3')!.appendChild(renderer.domElement)
 }
 </script>

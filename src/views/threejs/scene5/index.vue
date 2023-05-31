@@ -1,5 +1,5 @@
 <template>
-  <div class="scene4" id="scene4"></div>
+  <div class="scene5" id="scene5"></div>
 </template>
 
 <script lang="ts" setup>
@@ -90,20 +90,31 @@ const init = () => {
   renderer.setSize(width, height) //设置three.js渲染区域的尺寸(像素px)
 
   // 12、渲染器WebGLRenderer执行渲染方法.render()就可以生成一个Canvas画布(照片)，并把三维场景Scene呈现在canvas画布上面,你可以把.render()理解为相机的拍照动作“咔”
-  renderer.render(scene, camera)
+  // renderer.render(scene, camera)
 
   // 使用OrbitControls
   // 旋转：拖动鼠标左键
   // 缩放：滚动鼠标中键
   // 平移：拖动鼠标右键
   // 设置相机控件轨道控制器OrbitControls
-  const controls = new OrbitControls(camera, renderer.domElement)
-  // 如果OrbitControls改变了相机参数，重新调用渲染器渲染三维场景
-  controls.addEventListener('change', function () {
-    renderer.render(scene, camera) //执行渲染操作
-  }) //监听鼠标、键盘事件
+  // const controls = new OrbitControls(camera, renderer.domElement)
+  // // 如果OrbitControls改变了相机参数，重新调用渲染器渲染三维场景
+  // controls.addEventListener('change', function () {
+  //   renderer.render(scene, camera) //执行渲染操作
+  // }) //监听鼠标、键盘事件
+
+  // 设置了渲染循环,相机控件OrbitControls就不用再通过事件change执行renderer.render(scene, camera);，毕竟渲染循环一直在执行renderer.render(scene, camera);。
 
   // 13、Canvas画布插入到任意HTML元素中
-  document.getElementById('scene4')!.appendChild(renderer.domElement)
+  document.getElementById('scene5')!.appendChild(renderer.domElement)
+
+  // 渲染函数
+  function render() {
+    renderer.render(scene, camera) //执行渲染操作
+    mesh.rotateY(0.01) //每次绕y轴旋转0.01弧度
+    mesh.rotateZ(0.01) //每次绕z轴旋转0.01弧度
+    requestAnimationFrame(render) //请求再次执行渲染函数render，渲染下一帧
+  }
+  render()
 }
 </script>
