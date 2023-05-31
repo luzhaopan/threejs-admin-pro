@@ -38,6 +38,11 @@ const router = createRouter({
       path: '/scene5',
       name: 'Scene5',
       component: () => import('../views/threejs/scene5/index.vue')
+    },
+    {
+      path: '/scene6',
+      name: 'Scene6',
+      component: () => import('../views/threejs/scene6/index.vue')
     }
   ]
 })
