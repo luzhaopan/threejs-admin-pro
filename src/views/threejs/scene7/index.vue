@@ -98,6 +98,66 @@ const init = () => {
     mesh.material.color.set(value)
   })
 
+  // 参数3是一个数组，生成交互界面是下拉菜单
+  const obj2 = {
+    scale: 0
+  }
+  // 参数3数据类型：数组(下拉菜单)
+  gui
+    .add(obj2, 'scale', [-100, 0, 100])
+    .name('y坐标')
+    .onChange(function (value) {
+      mesh.position.y = value
+    })
+
+  const obj3 = {
+    scale: 0
+  }
+  // 参数3数据类型：对象(下拉菜单)
+  gui
+    .add(obj3, 'scale', {
+      left: -100,
+      center: 0,
+      right: 100
+      // 左: -100,//可以用中文
+      // 中: 0,
+      // 右: 100
+    })
+    .name('位置选择')
+    .onChange(function (value) {
+      mesh.position.x = value
+    })
+
+  const obj4 = {
+    bool: false
+  }
+  // 改变的obj属性数据类型是布尔值，交互界面是单选框
+  gui
+    .add(obj4, 'bool')
+    .name('是否旋转')
+    .onChange(function (value) {
+      // 点击单选框，控制台打印obj.bool变化
+      console.log('obj.bool', value)
+    })
+
+  // 通过gui对象的.addFolder()方法可以创建一个子菜单，当你通过GUI控制的属性比较多的时候，可以使用.addFolder()进行分组。
+  // .addFolder()返回的子文件夹对象，同样具有gui对象的.add()、.onChange()、.addColor()等等属性。
+  const obj5 = {
+    color: 0x00ffff // 材质颜色
+  }
+  // 创建材质子菜单
+  const matFolder = gui.addFolder('材质')
+  matFolder.close()
+  // 材质颜色color
+  matFolder.addColor(obj5, 'color').onChange(function (value) {
+    material.color.set(value)
+  })
+
+  // 环境光子菜单
+  const ambientFolder = gui.addFolder('环境光')
+  // 环境光强度
+  ambientFolder.add(ambient, 'intensity', 0, 2)
+
   const width = 800 //宽度
   const height = 500 //高度
   // 7、实例化一个透视投影相机对象（透视投影相机PerspectiveCamera）
@@ -136,6 +196,8 @@ const init = () => {
   document.getElementById('scene7')!.appendChild(renderer.domElement)
 
   function render() {
+    // 当gui界面设置obj.bool为true,mesh执行旋转动画
+    if (obj4.bool) mesh.rotateY(0.01)
     renderer.render(scene, camera) //执行渲染操作
     requestAnimationFrame(render) //请求再次执行渲染函数render，渲染下一帧
   }
