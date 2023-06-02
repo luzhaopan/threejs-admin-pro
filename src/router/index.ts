@@ -58,6 +58,11 @@ const router = createRouter({
       path: '/scene9',
       name: 'Scene9-三角形',
       component: () => import('../views/threejs/scene9/index.vue')
+    },
+    {
+      path: '/scene10',
+      name: 'Group',
+      component: () => import('../views/threejs/scene10/index.vue')
     }
   ]
 })
