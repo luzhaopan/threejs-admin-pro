@@ -68,6 +68,11 @@ const router = createRouter({
       path: '/scene11',
       name: '纹理',
       component: () => import('../views/threejs/scene11/index.vue')
+    },
+    {
+      path: '/scene12',
+      name: '加载外部模型',
+      component: () => import('../views/threejs/scene12/index.vue')
     }
   ]
 })
