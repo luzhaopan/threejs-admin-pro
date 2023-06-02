@@ -63,6 +63,11 @@ const router = createRouter({
       path: '/scene10',
       name: 'Group',
       component: () => import('../views/threejs/scene10/index.vue')
+    },
+    {
+      path: '/scene11',
+      name: '纹理',
+      component: () => import('../views/threejs/scene11/index.vue')
     }
   ]
 })
