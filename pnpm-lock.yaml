@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@rushstack/eslint-patch': ^1.2.0
   '@tsconfig/node18': ^2.0.1
+  '@tweenjs/tween.js': ^18
   '@types/node': ^18.16.8
   '@vitejs/plugin-vue': ^4.2.3
   '@vue/eslint-config-prettier': ^7.1.0
@@ -21,6 +22,7 @@ specifiers:
   vue-tsc: ^1.6.4
 
 dependencies:
+  '@tweenjs/tween.js': 18.6.4
   pinia: 2.1.3_typescript@5.0.4+vue@3.3.4
   three: 0.148.0
   vue: 3.3.4
@@ -353,6 +355,10 @@ packages:
   /@tsconfig/node18/2.0.1:
     resolution: {integrity: sha512-UqdfvuJK0SArA2CxhKWwwAWfnVSXiYe63bVpMutc27vpngCntGUZQETO24pEJ46zU6XM+7SpqYoMgcO3bM11Ew==}
     dev: true
+
+  /@tweenjs/tween.js/18.6.4:
+    resolution: {integrity: sha512-lB9lMjuqjtuJrx7/kOkqQBtllspPIN+96OvTCeJ2j5FEzinoAXTdAMFnDAQT1KVPRlnYfBrqxtqP66vDM40xxQ==}
+    dev: false
 
   /@types/json-schema/7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}

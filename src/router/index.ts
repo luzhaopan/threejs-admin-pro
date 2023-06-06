@@ -93,6 +93,16 @@ const router = createRouter({
       path: '/scene16',
       name: '动画',
       component: () => import('../views/threejs/scene16/index.vue')
+    },
+    {
+      path: '/scene17',
+      name: '动画2',
+      component: () => import('../views/threejs/scene17/index.vue')
+    },
+    {
+      path: '/scene18',
+      name: 'tweenjs',
+      component: () => import('../views/threejs/scene18/index.vue')
     }
   ]
 })
