@@ -78,6 +78,16 @@ const router = createRouter({
       path: '/scene13',
       name: '生成曲线、几何体',
       component: () => import('../views/threejs/scene13/index.vue')
+    },
+    {
+      path: '/scene14',
+      name: '管道漫游',
+      component: () => import('../views/threejs/scene14/index.vue')
+    },
+    {
+      path: '/scene15',
+      name: '雪花',
+      component: () => import('../views/threejs/scene15/index.vue')
     }
   ]
 })
