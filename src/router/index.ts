@@ -88,6 +88,11 @@ const router = createRouter({
       path: '/scene15',
       name: '雪花',
       component: () => import('../views/threejs/scene15/index.vue')
+    },
+    {
+      path: '/scene16',
+      name: '动画',
+      component: () => import('../views/threejs/scene16/index.vue')
     }
   ]
 })
