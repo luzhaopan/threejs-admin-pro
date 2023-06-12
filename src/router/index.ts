@@ -10,8 +10,8 @@ const router = createRouter({
       component: Dashboard
     },
     {
-      path: '/three',
-      name: 'Three',
+      path: '/css2dLabel',
+      name: 'css2d - label',
       component: () => import('../views/threejs/model1/index.vue')
     },
     {
