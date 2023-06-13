@@ -10,26 +10,28 @@ import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
 
 import { reactive, onMounted } from 'vue'
 
-const data = reactive({
-	base3d: {}
+const state = reactive({
+	base3d: {},
+	gui: {},
+	camera: {}
 })
 let gui
 
-let camera, scene, renderer, labelRenderer
+let scene, renderer, labelRenderer
 
 const layers = {
 	'Toggle Name': function () {
-		camera.layers.toggle(0)
+		state.camera.layers.toggle(0)
 	},
 	'Toggle Mass': function () {
-		camera.layers.toggle(1)
+		state.camera.layers.toggle(1)
 	},
 	'Enable All': function () {
-		camera.layers.enableAll()
+		state.camera.layers.enableAll()
 	},
 
 	'Disable All': function () {
-		camera.layers.disableAll()
+		state.camera.layers.disableAll()
 	}
 }
 
@@ -47,25 +49,35 @@ const init = () => {
 	const EARTH_RADIUS = 1
 	const MOON_RADIUS = 0.27
 
-	camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200)
-	camera.position.set(10, 5, 20)
-	camera.layers.enableAll()
-	camera.layers.toggle(1)
 
+	// 30:视场角度, width / height:Canvas画布宽高比, 1:近裁截面, 3000：远裁截面
+	// const camera = new THREE.PerspectiveCamera(30, width / height, 1, 3000);
+
+	// 创建相机
+	state.camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 2000)
+	state.camera.position.set(10, 15, 30)
+	state.camera.layers.enableAll()
+	state.camera.layers.toggle(1)
+
+	state.camera.lookAt(0, 0, 0)
+
+	// 创建场景
 	scene = new THREE.Scene()
 
+	// 创建平行光
 	const dirLight = new THREE.DirectionalLight(0xffffff)
 	dirLight.position.set(0, 0, 1)
 	dirLight.layers.enableAll()
 	scene.add(dirLight)
 
+	// 辅助坐标
 	const axesHelper = new THREE.AxesHelper(5)
 	axesHelper.layers.enableAll()
 	scene.add(axesHelper)
 
-	//
-
+	//创建球
 	const earthGeometry = new THREE.SphereGeometry(EARTH_RADIUS, 16, 16)
+	// 材质
 	const earthMaterial = new THREE.MeshPhongMaterial({
 		specular: 0x333333,
 		shininess: 5,
@@ -85,11 +97,13 @@ const init = () => {
 	moon = new THREE.Mesh(moonGeometry, moonMaterial)
 	scene.add(moon)
 
-	//
+	
 
+	//
 	earth.layers.enableAll()
 	moon.layers.enableAll()
 
+	// 把HTML元素作为标签标注三维场景。
 	const earthDiv = document.createElement('div')
 	earthDiv.className = 'label'
 	earthDiv.textContent = 'Earth'
@@ -126,8 +140,7 @@ const init = () => {
 	moon.add(moonMassLabel)
 	moonMassLabel.layers.set(1)
 
-	//
-
+	// 创建渲染器
 	renderer = new THREE.WebGLRenderer()
 	renderer.setPixelRatio(window.devicePixelRatio)
 	renderer.setSize(window.innerWidth, window.innerHeight)
@@ -140,7 +153,7 @@ const init = () => {
 	labelRenderer.domElement.style.top = '0px'
 	document.body.appendChild(labelRenderer.domElement)
 
-	const controls = new OrbitControls(camera, labelRenderer.domElement)
+	const controls = new OrbitControls(state.camera, labelRenderer.domElement)
 	controls.minDistance = 5
 	controls.maxDistance = 100
 
@@ -151,9 +164,9 @@ const init = () => {
 	initGui()
 }
 function onWindowResize() {
-	camera.aspect = window.innerWidth / window.innerHeight
+	state.camera.aspect = window.innerWidth / window.innerHeight
 
-	camera.updateProjectionMatrix()
+	state.camera.updateProjectionMatrix()
 
 	renderer.setSize(window.innerWidth, window.innerHeight)
 
@@ -167,8 +180,8 @@ function animate() {
 
 	moon.position.set(Math.sin(elapsed) * 5, 0, Math.cos(elapsed) * 5)
 
-	renderer.render(scene, camera)
-	labelRenderer.render(scene, camera)
+	renderer.render(scene, state.camera)
+	labelRenderer.render(scene, state.camera)
 }
 
 //
