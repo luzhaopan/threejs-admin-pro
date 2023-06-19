@@ -15,9 +15,9 @@ const router = createRouter({
       component: () => import('../views/threejs/model1/index.vue')
     },
     {
-      path: '/scene1',
-      name: 'Scene1',
-      component: () => import('../views/threejs/scene1/index.vue')
+      path: '/css3dMolecules',
+      name: 'css3d_molecules',
+      component: () => import('../views/threejs/model2/index.vue')
     },
     {
       path: '/scene2',

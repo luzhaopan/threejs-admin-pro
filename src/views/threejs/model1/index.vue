@@ -1,5 +1,5 @@
 <template>
-  <div class="scene" id="scene"></div>
+  <div class="scene" id="scene_2d"></div>
 </template>
 
 <script lang="ts" setup>
@@ -40,6 +40,9 @@ const textureLoader = new THREE.TextureLoader()
 
 let moon
 
+const c_width = window.innerWidth-260
+const c_height = window.innerHeight
+
 onMounted(() => {
   init()
   animate()
@@ -53,7 +56,7 @@ const init = () => {
   // const camera = new THREE.PerspectiveCamera(30, width / height, 1, 3000);
 
   // 创建相机
-  state.camera = new THREE.PerspectiveCamera(15, window.innerWidth / window.innerHeight, 1, 2000)
+  state.camera = new THREE.PerspectiveCamera(15, c_width / c_height, 1, 2000)
   state.camera.position.set(10, 15, 30)
   state.camera.layers.enableAll()
   state.camera.layers.toggle(1)
@@ -137,16 +140,19 @@ const init = () => {
   moon.add(moonMassLabel)
   moonMassLabel.layers.set(1)
 
+  
+
   // 创建渲染器
   renderer = new THREE.WebGLRenderer()
   renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setSize(c_width, c_height)
   // document.body.appendChild( renderer.domElement );
-  document.getElementById('scene')!.appendChild(renderer.domElement)
+  document.getElementById('scene_2d')!.appendChild(renderer.domElement)
 
   labelRenderer = new CSS2DRenderer()
-  labelRenderer.setSize(window.innerWidth, window.innerHeight)
+  labelRenderer.setSize(c_width, c_height)
   labelRenderer.domElement.style.position = 'absolute'
+  labelRenderer.domElement.style.right = '0px'
   labelRenderer.domElement.style.top = '0px'
   document.body.appendChild(labelRenderer.domElement)
 
@@ -161,13 +167,13 @@ const init = () => {
   initGui()
 }
 function onWindowResize() {
-  state.camera.aspect = window.innerWidth / window.innerHeight
+  state.camera.aspect = c_width / c_height
 
   state.camera.updateProjectionMatrix()
 
-  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setSize(c_width, c_height)
 
-  labelRenderer.setSize(window.innerWidth, window.innerHeight)
+  labelRenderer.setSize(c_width, c_height)
 }
 
 function animate() {

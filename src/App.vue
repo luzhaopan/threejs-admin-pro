@@ -4,7 +4,7 @@
   <div class="main-container">
     <header>
       <div class="wrapper">
-        <nav>
+        <nav class="nav_item">
           <RouterLink v-for="item in router" :to="item.path" :key="item.path">
             {{ item.name }}
           </RouterLink>
@@ -27,7 +27,7 @@ const router = useRouter().getRoutes() //2.实例化路由
 }
 
 header {
-  flex: 0 0 120px;
+  flex: 0 0 200px;
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -37,6 +37,8 @@ nav {
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 nav a.router-link-exact-active {
@@ -75,6 +77,8 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>
