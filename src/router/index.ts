@@ -20,9 +20,9 @@ const router = createRouter({
       component: () => import('../views/threejs/model2/index.vue')
     },
     {
-      path: '/scene2',
-      name: 'Scene2',
-      component: () => import('../views/threejs/scene2/index.vue')
+      path: '/css3d_orthographic',
+      name: 'css3d_orthographic',
+      component: () => import('../views/threejs/scene1/index.vue')
     },
     {
       path: '/scene3',
