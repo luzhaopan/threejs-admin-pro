@@ -25,8 +25,8 @@ const router = createRouter({
       component: () => import('../views/threejs/scene1/index.vue')
     },
     {
-      path: '/scene3',
-      name: 'Scene3',
+      path: '/css3d_periodictable',
+      name: 'css3d_periodictable',
       component: () => import('../views/threejs/scene3/index.vue')
     },
     {

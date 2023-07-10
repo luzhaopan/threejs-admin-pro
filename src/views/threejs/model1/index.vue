@@ -154,7 +154,7 @@ const init = () => {
   labelRenderer.domElement.style.position = 'absolute'
   labelRenderer.domElement.style.right = '0px'
   labelRenderer.domElement.style.top = '0px'
-  document.body.appendChild(labelRenderer.domElement)
+  document.getElementById('scene_2d')!.appendChild(labelRenderer.domElement)
 
   const controls = new OrbitControls(state.camera, labelRenderer.domElement)
   controls.minDistance = 5
